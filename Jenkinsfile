@@ -6,13 +6,22 @@ pipeline {
         sh 'make check'
       }
     }
-}
-post {
+    stage('') {
+      steps {
+        emailext(subject: 'packager-maintenance', body: 'Check the build result.')
+      }
+    }
+  }
+  post {
     always {
       junit '**/target/*.xml'
+
     }
+
     failure {
-        echo "FAIL"
+      echo 'FAIL'
+
     }
+
   }
 }
