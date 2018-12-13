@@ -6,9 +6,9 @@ pipeline {
         sh 'make check'
       }
     }
-    stage('') {
+    stage('error') {
       steps {
-        emailext(subject: 'packager-maintenance', body: 'Check the build result.')
+        emailext(subject: 'packager-maintenance', body: 'Check the build result.', to: '\'18582105171@tmomail.net\'')
       }
     }
   }
